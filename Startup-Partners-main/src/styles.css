@@ -907,7 +907,7 @@
 
 .modal-content {
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 }
 
 .form-group-modal {
@@ -1096,7 +1096,7 @@
 
 .followers-text,
 .following-text {
-font-weight: 600;
+font-weight: 500;
 }
 
 .followers-text:hover,
