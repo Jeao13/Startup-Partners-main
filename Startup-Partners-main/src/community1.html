@@ -29,6 +29,7 @@
     />
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script.js"></script>
 
     <title>ICONS Profile Page</title>
   </head>
@@ -268,7 +269,7 @@
             <div class="">
               <div class="d-flex align-items-center justify-content-between">
                 <p class="text-sm font-semibold m-0">Your Posts</p>
-                <button
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                   class="text-xs rounded py-1 px-2 no-border bg-pri text-white"
                 >
                   New
@@ -370,7 +371,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 col-md-9 col-12">
+          <div class="col-lg-6 col-md-9 col-12 bg-whitesmoke" id="posts">
             <div class="h-100 px-4">
               <div class="d-flex justify-content-between align-items-center">
                 <p class="font-semibold">Home</p>
@@ -401,61 +402,13 @@
                   Create posts to attract views and build connectiosn. Take the
                   first step. You got this
                 </p>
-                <button class="glass-button w-100 mt-4">Get Started</button>
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="glass-button w-100 mt-4">Get Started</button>
               </div>
     
-                <div class="border p-3 rounded">
-                  <p class="m-0 text-sm fw-semibold">Hot in community</p>
-                  <div style="border-left: 1px solid #b4b4b3; margin-left: 4px">
-                    <div class="w-100 mt-2 mb-3">
-                      <div class="position-relative" style="padding-left: 16px">
-                        <div class="icon-16 position-absolute">
-                          <img src="../img/dot.svg" class="h-100 w-100" alt="dot" />
-                        </div>
-                        <p class="m-0 text-xs text-muted">Jan. 3, 2024</p>
-                        <a href="" class="text-sm text-black text-decoration-none"
-                          >Why do birds suddenly appear?</a
-                        >
-                        <p class="m-0 text-xs text-muted">
-                          <i>by: Arvin Malaluan</i>
-                        </p>
-                      </div>
-                    </div>
-    
-                    <div class="w-100 mt-2 mb-3">
-                      <div class="position-relative" style="padding-left: 16px">
-                        <div class="icon-16 position-absolute">
-                          <img src="../img/dot.svg" class="h-100 w-100" alt="dot" />
-                        </div>
-                        <p class="m-0 text-xs text-muted">Jan. 3, 2024</p>
-                        <a href="" class="text-sm text-black text-decoration-none"
-                          >Why do birds suddenly appear?</a
-                        >
-                        <p class="m-0 text-xs text-muted">
-                          <i>by: Arvin Malaluan</i>
-                        </p>
-                      </div>
-                    </div>
-    
-                    <div class="w-100 mt-2 mb-3">
-                      <div class="position-relative" style="padding-left: 16px">
-                        <div class="icon-16 position-absolute">
-                          <img src="../img/dot.svg" class="h-100 w-100" alt="dot" />
-                        </div>
-                        <p class="m-0 text-xs text-muted">Jan. 3, 2024</p>
-                        <a href="" class="text-sm text-black text-decoration-none"
-                          >Why do birds suddenly appear?</a
-                        >
-                        <p class="m-0 text-xs text-muted">
-                          <i>by: Arvin Malaluan</i>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
   
 
-                <div class="p-3">
+                <div class="p-3 ">
                   <div
                     class="d-flex gap-2 align-items-start justify-content-between"
                   >
@@ -523,11 +476,20 @@
                       placeholder="Write your comment here"
                       class="w-100 text-xs px-2 border rounded-xs"
                     />
+
+                    <div
+                        style="height: 30px; width: 30px"
+                        class="p-3 d-flex justify-content-center align-items-center border rounded-xs"
+                      >
+                      <i class="bi bi-send"></i>
+                      </div>
+
+
                   </div>
                 </div>
               </div>
 
-              <div class="border rounded-xs mt-4">
+              <div class="border rounded-xs mt-4 mb-2">
                 <!-- heading -->
                 <div class="p-3">
                   <div
@@ -597,6 +559,13 @@
                       placeholder="Write your comment here"
                       class="w-100 text-xs px-2 border rounded-xs"
                     />
+
+                    <div
+                        style="height: 30px; width: 30px"
+                        class="p-3 d-flex justify-content-center align-items-center border rounded-xs"
+                      >
+                      <i class="bi bi-send"></i>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -618,7 +587,7 @@
                 Create posts to attract views and build connectiosn. Take the
                 first step. You got this
               </p>
-              <button class="glass-button w-100 mt-4">Get Started</button>
+              <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="glass-button w-100 mt-4">Get Started</button>
             </div>
 
             <div class="border p-3 rounded">
@@ -675,6 +644,8 @@
       </div>
 
           
+
+    <!-- Off Canvas when screen is small-->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
@@ -784,11 +755,118 @@
             </p>
           </div>
         </div>
+
+          <hr>
+
+        <div class="border p-3 rounded d-block mt-2">
+          <p class="m-0 text-sm fw-semibold">Hot in community</p>
+          <div style="border-left: 1px solid #b4b4b3; margin-left: 4px">
+            <div class="w-100 mt-2 mb-3">
+              <div class="position-relative" style="padding-left: 16px">
+                <div class="icon-16 position-absolute">
+                  <img src="../img/dot.svg" class="h-100 w-100" alt="dot" />
+                </div>
+                <p class="m-0 text-xs text-muted">Jan. 3, 2024</p>
+                <a href="" class="text-sm text-black text-decoration-none"
+                  >Why do birds suddenly appear?</a
+                >
+                <p class="m-0 text-xs text-muted">
+                  <i>by: Arvin Malaluan</i>
+                </p>
+              </div>
+            </div>
+
+            <div class="w-100 mt-2 mb-3">
+              <div class="position-relative" style="padding-left: 16px">
+                <div class="icon-16 position-absolute">
+                  <img src="../img/dot.svg" class="h-100 w-100" alt="dot" />
+                </div>
+                <p class="m-0 text-xs text-muted">Jan. 3, 2024</p>
+                <a href="" class="text-sm text-black text-decoration-none"
+                  >Why do birds suddenly appear?</a
+                >
+                <p class="m-0 text-xs text-muted">
+                  <i>by: Arvin Malaluan</i>
+                </p>
+              </div>
+            </div>
+
+            <div class="w-100 mt-2 mb-3">
+              <div class="position-relative" style="padding-left: 16px">
+                <div class="icon-16 position-absolute">
+                  <img src="../img/dot.svg" class="h-100 w-100" alt="dot" />
+                </div>
+                <p class="m-0 text-xs text-muted">Jan. 3, 2024</p>
+                <a href="" class="text-sm text-black text-decoration-none"
+                  >Why do birds suddenly appear?</a
+                >
+                <p class="m-0 text-xs text-muted">
+                  <i>by: Arvin Malaluan</i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+      <div class="modal-dialog" style="max-width: 1000px;">
+          <div class="modal-content" >
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Write a Post</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="javascript:void(0);" onsubmit="CreatePost();" method="post">
+              <div class="modal-body d-flex flex-column">
+                  <label for="title" class="mb-2">Title</label>
+                  <input type="text" name="" id="title" class="form-control" required>
+                  <hr>
+                  <br>
+                  <label for="body"  class="mb-2">Body</label>
+                  <textarea class="p-3 form-control" name="" id="body" style="width: 100%; resize: none;" rows="10" required ></textarea>
+                  <hr>
+
+                  
+                  <label for="imageInput" class="mb-3">Attach an Image
+                      <input type="file" accept="image/*" onchange="previewImage(event)" id="imageInput" class="mb-3" required>
+                                      
+                      <div  class="d-flex align-items-center justify-content-center">
+                          <div id="imageContainer" class="d-flex flex-column align-items-center" style="border: 1px dashed gainsboro; padding: 20px; width: 600px; height: 600px;">
+                              <div class="rounded-circle d-flex align-items-center justify-content-center" style="border: 1px solid gainsboro; width: 200px; height: 200px;">
+                                  <img id="imagePreview" src="../img/img-preview.png" alt="Preview" class="img-fluid w-50">
+                                 
+                              </div>
+                              <h5 class="mt-3">Click here to Attach Image</h5>
+                              <br>
+                              <p>Maximum</p>
+                          </div>
+                      </div>
+                  </label>
+                  <br>
+                
+                 
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Post</button>
+              </div>
+          </form>
+          </div>
+      </div>
+  </div>
+
+
+
+
 
     </div>
 
 
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetchPost();
+});
+  </script>
 </html>
