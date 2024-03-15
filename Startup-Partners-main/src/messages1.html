@@ -125,7 +125,7 @@
       <div class="h-100">
         <div class="row w-100 h-100 gx-0">
           <div
-            class="col-3 h-100 bg-white"
+            class="col-3 h-100 bg-white d-none d-md-block"
             style="border-right: 1px solid gainsboro"
           >
             <div class="d-flex flex-column h-100">
@@ -385,7 +385,7 @@
               </div>
             </div>
           </div>
-          <div class="col-9">
+          <div class="col-md-9 col-12">
             <div class="d-flex flex-column h-100">
               <div
                 class="bg-white px-4 py-2 d-flex justify-content-between align-items-center"
@@ -411,7 +411,7 @@
               </div>
 
               <div
-                class="overflow-y-scroll d-flex flex-column justify-content-end px-4 py-2 gap-1"
+                class="overflow-y-scroll d-flex flex-column px-4 py-2 gap-1"
                 style="height: calc(100vh - 152px)"
               >
                 <p class="m-0 px-3 py-1 bg-pri text-sm you top-you">hello</p>
@@ -448,5 +448,21 @@
         </div>
       </div>
     </div>
+
+
+    
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
+      </div>
+    </div>
+
+
+
   </body>
 </html>
