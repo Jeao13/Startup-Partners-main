@@ -71,6 +71,8 @@ function bufferToImageURL(buffer) {
 
 async function fetchPost() {
     var postContainer = document.getElementById('posts');
+
+
     try {
         const response = await fetch(`http://localhost:3000/api/v1/community/post`, {
             method: 'GET'
@@ -130,53 +132,90 @@ async function fetchPost() {
             }
 
             const currentPostContent = `
-                <div class="d-flex mb-4 mt-4 rounded bg-glassy position-relative">
-                    <div class="dropdown" style="position: absolute; top: 10px; right: 20px;">
-                        <button class="btn btn-light rounded" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                            <li><a class="dropdown-item" href="#">Report</a></li>
-                        </ul>
-                    </div>
-                    <img src="../img/logo2.png" class="me-3 m-4" alt="Bootstrap" width="40" height="40" style="border: 1px solid #efa92a; border-radius: 50%;">
-                    <div class="d-flex flex-column">
-                        <div class="mt-4 mb-1">
-                            <h5 style="margin-bottom: 0; font-size: 16px;">${post.author}</h5>
-                            <p style="margin-bottom: 0; font-size:11px;">${formattedTimestamp}</p>
-                        </div>
+            <div class="border rounded-xs mt-4 mb-2">
+            <!-- heading -->
+            <div class="p-3">
+              <div
+                class="d-flex gap-2 align-items-start justify-content-between"
+              >
+                <div class="d-flex gap-2">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                    class="rounded-circle"
+                    style="width: 38px"
+                    alt="Avatar"
+                  />
 
+                  <div>
+                    <p class="m-0 text-sm font-semibold">
+                      ${post.author}
+                    </p>
+                    <p class="m-0 text-xs">${formattedTimestamp}</p>
+                  </div>
+                </div>
 
-                        <div class="mt-2">
-                            <h4>${post.title}</h4>
-                        </div>
-                          <div id="wow" class="bg-light rounded rounded d-flex align-self-center" data-bs-toggle="modal" data-bs-target="#fullScreenModal" style="max-width: 80%; height: auto; border: 1px solid black; overflow: hidden; margin-right:60px;">
-                                <div class="position-relative" style="width: 100%; height: 100%;">
-                                    <img src="${post.image}" class="img-fluid" alt="">
-                                    <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center text-white clickable" style="background-color: rgba(0, 0, 0, 0.5); display: none; " onclick="postModal(${post.post_id})">
-                                        <span>View Post</span>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="d-flex mt-2 mb-2">
-                        <div class="btn-group">
-                            <button type="button" style="border-top: 1px solid ${likeButtonColor}; border-left: 1px solid ${likeButtonColor}; border-bottom: 1px solid ${likeButtonColor}; background-color:${likeButtonColor}" class="btn" onclick="upVote(${post.post_id},${post.like_count})" aria-current="page">
-                                <i class="${likeButtonIcon} me-1" style="color: ${likeButtonColoricon};"></i>
-                                <span style="font-size: 15px; color:${textcolor}">${post.like_count}</span>
-                            </button>
-                            <button type="button" style="border-top: 1px solid ${dislikeButtonColor}; border-right: 1px solid ${dislikeButtonColor}; border-bottom: 1px solid ${dislikeButtonColor}; background-color:${dislikeButtonColor}" class="btn" onclick="downVote(${post.post_id})">
-                                <i class="${dislikeButtonIcon} me-1" style="color:${dislikeButtonColoricon};"></i>
-                            </button>
-                        </div>
-                        <div data-bs-toggle="modal" data-bs-target="#fullScreenModal">
-                        <button onclick="postModal(${post.post_id})" class="btn btn-light rounded ms-1" style="background-color:whitesmoke; border: 1px solid #efa92a;">
-                            <i class="fas fa-comments me-1"></i>
-                        </button>
-                        </div>
-                    </div>
+                <div class="d-flex gap-2">
+                  <img src="../img/more.svg" style="height: 16px" alt="" />
+                  <img src="../img/close.svg" style="height: 16px" alt="" />
                 </div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div>
+              <p class="font-semibold px-3 m-0">
+                ${post.title}
+              </p>
+              <p class="text-xs px-3 mb-2">
+                ${post.content}
+              </p>
+              <div id="wow" data-bs-toggle="modal" data-bs-target="#fullScreenModal">
+              <div class="position-relative">
+              <img
+                src="${post.image}"
+                width="100%"
+                height="350px"
+                class="mb-2"
+                style="object-fit: cover; object-position: center"
+                alt=""
+              />
+              <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center text-white clickable" style="background-color: rgba(0, 0, 0, 0.5); display: none;">
+              <span>View Post</span>
+          </div>
+          </div>
+              </div>
+              <p class="px-3 m-0 text-xs text-muted pb-2">32 upvotes</p>
+
+              <div class="d-flex px-3 gap-2 pb-2 mt-2">
+                <div class="d-flex gap-1">
+                  <div
+                    style="height: 30px; width: 30px"
+                    class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
+                  >
+                    <img src="../img/like.unselected.svg" alt="" />
+                  </div>
+                  <div
+                    style="height: 30px; width: 30px"
+                    class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
+                  >
+                    <img src="../img/dislike.unselected.svg" alt="" />
+                  </div>
                 </div>
+                <input
+                  type="text"
+                  placeholder="Write your comment here"
+                  class="w-100 text-xs px-2 border rounded-xs"
+                />
+
+                <div
+                    style="height: 30px; width: 30px"
+                    class="p-3 d-flex justify-content-center align-items-center border rounded-xs"
+                  >
+                  <i class="bi bi-send"></i>
+                  </div>
+              </div>
+            </div>
+          </div>
             `;
 
             postContent += currentPostContent;
@@ -598,7 +637,8 @@ async function addComment(id) {
 // PROFILE
 
 async function fetchAccPost(id) {
-    var postContainer = document.getElementById('posts');
+    var postContainer = document.getElementById('posts1');
+    console.log(postContainer);
     try {
         const response = await fetch(`http://localhost:3000/api/v1/community/post/account_fkid=${id}`, {
             method: 'GET'
@@ -658,53 +698,20 @@ async function fetchAccPost(id) {
             }
 
             const currentPostContent = `
-                <div class="d-flex mb-4 mt-4 rounded bg-glassy position-relative">
-                    <div class="dropdown" style="position: absolute; top: 10px; right: 20px;">
-                        <button class="btn btn-light rounded" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                            <li><a class="dropdown-item" href="#">Report</a></li>
-                        </ul>
-                    </div>
-                    <img src="../img/logo2.png" class="me-3 m-4" alt="Bootstrap" width="40" height="40" style="border: 1px solid #efa92a; border-radius: 50%;">
-                    <div class="d-flex flex-column">
-                        <div class="mt-4 mb-1">
-                            <h5 style="margin-bottom: 0; font-size: 16px;">${post.author}</h5>
-                            <p style="margin-bottom: 0; font-size:11px;">${formattedTimestamp}</p>
-                        </div>
-
-
-                        <div class="mt-2">
-                            <h4>${post.title}</h4>
-                        </div>
-                          <div id="wow" class="bg-light rounded rounded d-flex align-self-center" data-bs-toggle="modal" data-bs-target="#fullScreenModal" style="max-width: 80%; height: auto; border: 1px solid black; overflow: hidden; margin-right:60px;">
-                                <div class="position-relative" style="width: 100%; height: 100%;">
-                                    <img src="${post.image}" class="img-fluid" alt="">
-                                    <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center text-white clickable" style="background-color: rgba(0, 0, 0, 0.5); display: none; " onclick="postModal(${post.post_id})">
-                                        <span>View Post</span>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="d-flex mt-2 mb-2">
-                        <div class="btn-group">
-                            <button type="button" style="border-top: 1px solid ${likeButtonColor}; border-left: 1px solid ${likeButtonColor}; border-bottom: 1px solid ${likeButtonColor}; background-color:${likeButtonColor}" class="btn" onclick="upVote(${post.post_id},${post.like_count})" aria-current="page">
-                                <i class="${likeButtonIcon} me-1" style="color: ${likeButtonColoricon};"></i>
-                                <span style="font-size: 15px; color:${textcolor}">${post.like_count}</span>
-                            </button>
-                            <button type="button" style="border-top: 1px solid ${dislikeButtonColor}; border-right: 1px solid ${dislikeButtonColor}; border-bottom: 1px solid ${dislikeButtonColor}; background-color:${dislikeButtonColor}" class="btn" onclick="downVote(${post.post_id})">
-                                <i class="${dislikeButtonIcon} me-1" style="color:${dislikeButtonColoricon};"></i>
-                            </button>
-                        </div>
-                        <div data-bs-toggle="modal" data-bs-target="#fullScreenModal">
-                        <button onclick="postModal(${post.post_id})" class="btn btn-light rounded ms-1" style="background-color:whitesmoke; border: 1px solid #efa92a;">
-                            <i class="fas fa-comments me-1"></i>
-                        </button>
-                        </div>
-                    </div>
-                </div>
-                </div>
+            <div class="d-flex gap-2 align-items-center">
+            <div>
+              <img
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                class="rounded-circle"
+                style="width: 32px"
+                alt="Avatar"
+              />
+            </div>
+            <div>
+              <p class="text-xs m-0 text-muted">${formattedTimestamp}</p>
+              <p class="text-xs m-0 text-muted">${post.title}</p>
+            </div>
+          </div>
             `;
 
             postContent += currentPostContent;

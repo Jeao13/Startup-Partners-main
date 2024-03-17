@@ -210,7 +210,7 @@
                 </li>
     
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="profile.html">
+                  <a class="dropdown-item d-flex align-items-center" href="profile1.html">
                     <i class="fa-regular fa-user"></i>
                     <span>My Profile</span>
                   </a>
@@ -220,7 +220,7 @@
                 </li>
     
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="community.html">
+                  <a class="dropdown-item d-flex align-items-center" href="community1.html">
                     <i class="fa-solid fa-users-rectangle"></i>
                     <span>Community</span>
                   </a>
@@ -230,7 +230,7 @@
                 </li>
     
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="messages.html">
+                  <a class="dropdown-item d-flex align-items-center" href="messages1.html">
                     <i class="fa-regular fa-message"></i>
                     <span>Messages</span>
                   </a>
@@ -282,7 +282,7 @@
                 placeholder="Find title"
               />
 
-              <div class="d-flex gap-2 flex-column mt-3">
+              <div class="d-flex gap-2 flex-column mt-3" id="posts1">
                 <div class="d-flex gap-2 align-items-center">
                   <div>
                     <img
@@ -371,7 +371,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 col-md-9 col-12 bg-whitesmoke" id="posts">
+          <div class="col-lg-6 col-md-9 col-12  p-3" >
             <div class="h-100 px-4">
               <div class="d-flex justify-content-between align-items-center">
                 <p class="font-semibold">Home</p>
@@ -387,188 +387,115 @@
                 </div>
               </div>
 
+              <!-- ETO AYUSIN MO -->
               <div class="border rounded-xs mt-2">
-                <div
-                class="p-4 border rounded-xs mb-3 position-relative overflow-hidden d-block d-sm-none"
+                <div class="p-4 border rounded-xs mb-3 position-relative overflow-hidden d-md-none">
+              <img
+                src="../img/banner1.png"
+                class="h-100 w-100 position-absolute"
+                style="top: 0; left: 0; z-index: -10"
+                alt=""
+              />
+              <p class="m-0 mb-1 text-white">Create, Post, Engage</p>
+              <p class="text-xs m-0" style="color: rgba(255, 255, 255, 0.7)">
+                Create posts to attract views and build connectiosn. Take the
+                first step. You got this
+              </p>
+              <button
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                class="glass-button w-100 mt-4"
               >
-                <img
-                  src="https://i.makeagif.com/media/11-27-2019/XvTr-Z.gif"
-                  class="h-100 w-100 position-absolute"
-                  style="top: 0; left: 0; z-index: -10"
-                  alt=""
-                />
-                <p class="m-0 mb-1 text-white">Create, Post, Engage</p>
-                <p class="text-xs m-0" style="color: rgba(255, 255, 255, 0.7)">
-                  Create posts to attract views and build connectiosn. Take the
-                  first step. You got this
-                </p>
-                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="glass-button w-100 mt-4">Get Started</button>
-              </div>
+                Get Started
+              </button>
+            </div>
     
                 
   
-
+              <div id="posts">
                 <div class="p-3 ">
-                  <div
-                    class="d-flex gap-2 align-items-start justify-content-between"
-                  >
-                    <div class="d-flex gap-2">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        class="rounded-circle"
-                        style="width: 38px"
-                        alt="Avatar"
-                      />
-
-                      <div>
-                        <p class="m-0 text-sm font-semibold">
-                          Aedrian Jeao De Torres
-                        </p>
-                        <p class="m-0 text-xs">1 hour ago</p>
-                      </div>
-                    </div>
-
-                    <div class="d-flex gap-2">
-                      <img src="../img/more.svg" style="height: 16px" alt="" />
-                      <img src="../img/close.svg" style="height: 16px" alt="" />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Content -->
-                <div>
-                  <p class="font-semibold px-3 m-0">
-                    Life can be somewhat beautiful i guess
-                  </p>
-                  <p class="text-xs px-3 mb-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Libero dolorum expedita consequuntur eaque nostrum
-                    perspiciatis quo, rerum obcaecati officia facere!
-                  </p>
-
-                  <img
-                    src="https://static.photocdn.pt/images/articles/2019/07/09/what_is_candid_photography_tutorial-1.webp"
-                    width="100%"
-                    height="350px"
-                    class="mb-2"
-                    style="object-fit: cover; object-position: center"
-                    alt=""
-                  />
-                  <p class="px-3 m-0 text-xs text-muted pb-2">32 upvotes</p>
-
-                  <div class="d-flex px-3 gap-2 pb-2 mt-2">
-                    <div class="d-flex gap-1">
-                      <div
-                        style="height: 30px; width: 30px"
-                        class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
-                      >
-                        <img src="../img/like.unselected.svg" alt="" />
-                      </div>
-                      <div
-                        style="height: 30px; width: 30px"
-                        class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
-                      >
-                        <img src="../img/dislike.unselected.svg" alt="" />
-                      </div>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Write your comment here"
-                      class="w-100 text-xs px-2 border rounded-xs"
+                <div
+                  class="d-flex gap-2 align-items-start justify-content-between"
+                >
+                  <div class="d-flex gap-2">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                      class="rounded-circle"
+                      style="width: 38px"
+                      alt="Avatar"
                     />
 
-                    <div
-                        style="height: 30px; width: 30px"
-                        class="p-3 d-flex justify-content-center align-items-center border rounded-xs"
-                      >
-                      <i class="bi bi-send"></i>
-                      </div>
+                    <div>
+                      <p class="m-0 text-sm font-semibold">
+                        Aedrian Jeao De Torres
+                      </p>
+                      <p class="m-0 text-xs">1 hour ago</p>
+                    </div>
+                  </div>
 
-
+                  <div class="d-flex gap-2">
+                    <img src="../img/more.svg" style="height: 16px" alt="" />
+                    <img src="../img/close.svg" style="height: 16px" alt="" />
                   </div>
                 </div>
               </div>
 
-              <div class="border rounded-xs mt-4 mb-2">
-                <!-- heading -->
-                <div class="p-3">
-                  <div
-                    class="d-flex gap-2 align-items-start justify-content-between"
-                  >
-                    <div class="d-flex gap-2">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        class="rounded-circle"
-                        style="width: 38px"
-                        alt="Avatar"
-                      />
+              <!-- Content -->
+              <div>
+                <p class="font-semibold px-3 m-0">
+                  Life can be somewhat beautiful i guess
+                </p>
+                <p class="text-xs px-3 mb-2">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Libero dolorum expedita consequuntur eaque nostrum
+                  perspiciatis quo, rerum obcaecati officia facere!
+                </p>
 
-                      <div>
-                        <p class="m-0 text-sm font-semibold">
-                          Aedrian Jeao De Torres
-                        </p>
-                        <p class="m-0 text-xs">1 hour ago</p>
-                      </div>
-                    </div>
+                <img
+                  src="https://static.photocdn.pt/images/articles/2019/07/09/what_is_candid_photography_tutorial-1.webp"
+                  width="100%"
+                  height="350px"
+                  class="mb-2"
+                  style="object-fit: cover; object-position: center"
+                  alt=""
+                />
+                <p class="px-3 m-0 text-xs text-muted pb-2">32 upvotes</p>
 
-                    <div class="d-flex gap-2">
-                      <img src="../img/more.svg" style="height: 16px" alt="" />
-                      <img src="../img/close.svg" style="height: 16px" alt="" />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Content -->
-                <div>
-                  <p class="font-semibold px-3 m-0">
-                    Life can be somewhat beautiful i guess
-                  </p>
-                  <p class="text-xs px-3 mb-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Libero dolorum expedita consequuntur eaque nostrum
-                    perspiciatis quo, rerum obcaecati officia facere!
-                  </p>
-
-                  <img
-                    src="https://static.photocdn.pt/images/articles/2019/07/09/what_is_candid_photography_tutorial-1.webp"
-                    width="100%"
-                    height="350px"
-                    class="mb-2"
-                    style="object-fit: cover; object-position: center"
-                    alt=""
-                  />
-                  <p class="px-3 m-0 text-xs text-muted pb-2">32 upvotes</p>
-
-                  <div class="d-flex px-3 gap-2 pb-2 mt-2">
-                    <div class="d-flex gap-1">
-                      <div
-                        style="height: 30px; width: 30px"
-                        class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
-                      >
-                        <img src="../img/like.unselected.svg" alt="" />
-                      </div>
-                      <div
-                        style="height: 30px; width: 30px"
-                        class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
-                      >
-                        <img src="../img/dislike.unselected.svg" alt="" />
-                      </div>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Write your comment here"
-                      class="w-100 text-xs px-2 border rounded-xs"
-                    />
-
+                <div class="d-flex px-3 gap-2 pb-2 mt-2">
+                  <div class="d-flex gap-1">
                     <div
-                        style="height: 30px; width: 30px"
-                        class="p-3 d-flex justify-content-center align-items-center border rounded-xs"
-                      >
-                      <i class="bi bi-send"></i>
-                      </div>
+                      style="height: 30px; width: 30px"
+                      class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
+                    >
+                      <img src="../img/like.unselected.svg" alt="" />
+                    </div>
+                    <div
+                      style="height: 30px; width: 30px"
+                      class="p-1 d-flex justify-content-center align-items-center border rounded-xs"
+                    >
+                      <img src="../img/dislike.unselected.svg" alt="" />
+                    </div>
                   </div>
+                  <input
+                    type="text"
+                    placeholder="Write your comment here"
+                    class="w-100 text-xs px-2 border rounded-xs"
+                  />
+
+                  <div
+                      style="height: 30px; width: 30px"
+                      class="p-3 d-flex justify-content-center align-items-center border rounded-xs"
+                    >
+                    <i class="bi bi-send"></i>
+                    </div>
+
+
                 </div>
               </div>
+              </div>
+                
+              </div>
+
             </div>
           </div>
 
@@ -668,67 +595,7 @@
             placeholder="Find title"
           />
 
-          <div class="d-flex gap-2 flex-column mt-3">
-            <div class="d-flex gap-2 align-items-center">
-              <div>
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                  class="rounded-circle"
-                  style="width: 32px"
-                  alt="Avatar"
-                />
-              </div>
-              <div>
-                <p class="text-xs m-0 text-muted">January 23, 2024</p>
-                <p class="text-xs m-0 text-muted">Jopay, kumusta ka na?</p>
-              </div>
-            </div>
-
-            <div class="d-flex gap-2 align-items-center">
-              <div>
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                  class="rounded-circle"
-                  style="width: 32px"
-                  alt="Avatar"
-                />
-              </div>
-              <div>
-                <p class="text-xs m-0 text-muted">January 23, 2024</p>
-                <p class="text-xs m-0 text-muted">Jopay, kumusta ka na?</p>
-              </div>
-            </div>
-
-            <div class="d-flex gap-2 align-items-center">
-              <div>
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                  class="rounded-circle"
-                  style="width: 32px"
-                  alt="Avatar"
-                />
-              </div>
-              <div>
-                <p class="text-xs m-0 text-muted">January 23, 2024</p>
-                <p class="text-xs m-0 text-muted">Jopay, kumusta ka na?</p>
-              </div>
-            </div>
-
-            <div class="d-flex gap-2 align-items-center">
-              <div>
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                  class="rounded-circle"
-                  style="width: 32px"
-                  alt="Avatar"
-                />
-              </div>
-              <div>
-                <p class="text-xs m-0 text-muted">January 23, 2024</p>
-                <p class="text-xs m-0 text-muted">Jopay, kumusta ka na?</p>
-              </div>
-            </div>
-
+          <div class="d-flex gap-2 flex-column mt-3" id="posts1">
             <div class="d-flex gap-2 align-items-center">
               <div>
                 <img
@@ -812,7 +679,7 @@
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-      <div class="modal-dialog" style="max-width: 1000px;">
+      <div class="modal-dialog modal-lg" style="max-width: 1000px;">
           <div class="modal-content" >
               <div class="modal-header">
                   <h1 class="modal-title fs-5" id="staticBackdropLabel">Write a Post</h1>
@@ -858,15 +725,122 @@
 
 
 
+  <div class="modal fade" id="fullScreenModal" tabindex="-1" aria-labelledby="fullScreenModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="ms-auto">
+                
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+               
+            <div class="row justify-content-between">
+              <div class="col-9 bg-whitesmoke d-flex justify-content-center align-items-center p-5" style="height: 90vh;">
+                  <img src="../img/test.jpg" alt="" class="img-fluid w-100">
+      
+              </div>
+              <div class="col-3 bg-whitesmoke">
+
+                <div class="p-3 ">
+                  <div
+                    class="d-flex gap-2 align-items-start justify-content-between"
+                  >
+                    <div class="d-flex gap-2">
+                      <img
+                      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                      class="rounded-circle img-fluid"
+                      style="width: 38px"
+                      alt="Avatar"
+                    />
+  
+                      <div>
+                       
+                        <p class="m-0 text-sm font-semibold">
+                          Aedrian Jeao De Torres
+                        </p>
+                        <p class="m-0 text-xs">1 hour ago</p>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex gap-2">
+                      <img src="../img/more.svg" style="height: 16px" alt="" />
+                      <img src="../img/close.svg" style="height: 16px" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+                <p class="font-semibold px-3 m-0">
+                  Lorem.
+                </p>
+
+                <p class="text-xs px-3 mb-2">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem consectetur vel corporis id ullam aliquid, recusandae quia repellendus impedit quidem rem adipisci modi sequi fugit ea. Voluptatem asperiores magni esse.
+                </p>
+
+                <div class="btn-group mt-3 d-flex" style="width: 100%;">
+                  <button class="btn bg-whitesmoke d-flex align-items-center justify-content-center">
+                      <img src="../img/like.unselected.svg" style="width: 14px;" alt="" class="me-1"/>
+                      <p class="m-0 ml-2 text-sm">Like</p>
+                  </button>
+                  <button class="btn bg-whitesmoke d-flex align-items-center justify-content-center">
+                      <img src="../img/dislike.unselected.svg" style="width: 14px;" alt="" class="me-1"/>
+                      <p class="m-0 ml-2 text-sm">Dislike</p>
+                  </button>
+              </div>
+
+              <div class="bg-whitesmoke p-3 mt-2" style="overflow: auto; max-height: 65%;">
+                <div class="d-flex">
+                  <img
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                  class="rounded-circle img-fluid me-3 "
+                  style="width: 38px"
+                  alt="Avatar"
+                />
+                <div>
+                  <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+              </div>
+
+              
+                <div class="d-flex bg-whitesmoke p-3 justify-content-center align-items-center">
+                  
+                  </div>
+                 
+  
+                  <input type="text" name="" class="form-control me-3" id="" style="height: 30px;">
+                  <button class="btn d-flex align-items-center justify-content-center" style="width: 20px; height: 30px;">
+                    <i class="bi bi-send"></i>
+                </button>
+                </div>
+      
+
+
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 
     </div>
 
 
   </body>
+
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       fetchPost();
+      fetchAccPost(1);
 });
   </script>
 </html>
