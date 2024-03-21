@@ -108,7 +108,7 @@
   list-style: none;
 }
 
-.header-nav>ul {
+.header-nav > ul {
   margin: 0;
   padding: 0;
 }
@@ -241,7 +241,7 @@
   background-color: #f6f9ff;
 }
 
-  /*--------------------------------------------------------------
+/*--------------------------------------------------------------
 # Override some default Bootstrap stylings
 --------------------------------------------------------------*/
 /* Dropdown menus */
@@ -451,7 +451,6 @@
 }
 
 @media (min-width: 1200px) {
-
   #main,
   #footer {
     margin-left: 300px;
@@ -465,7 +464,6 @@
 }
 
 @media (min-width: 1200px) {
-
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
     margin-left: 0;
@@ -577,7 +575,6 @@
 .sidebar-nav .nav-content a.active i {
   background-color: #4154f1;
 }
-
 
 /*--------------------------------------------------------------
 # Main
@@ -788,7 +785,7 @@
 }
 
 /* News & Updates */
-.dashboard .news .post-item+.post-item {
+.dashboard .news .post-item + .post-item {
   margin-top: 15px;
 }
 
@@ -846,10 +843,6 @@
   margin: 50px auto;
 }
 
-
-
-
-
 .user-image {
   width: 50px;
   height: 50px;
@@ -868,9 +861,6 @@
     margin-top: 30px;
   }
 }
-
-
-
 
 .post-form {
   background-color: #fff;
@@ -894,7 +884,7 @@
 }
 
 .btn {
-  background-color:#0e3370; /* Set your desired background color */
+  background-color: #0e3370; /* Set your desired background color */
   color: #fff; /* Set your desired text color */
   border: none;
   padding: 10px 20px;
@@ -903,7 +893,6 @@
   font-weight: 600;
   float: right;
 }
-
 
 .modal-content {
   border-radius: 8px;
@@ -926,8 +915,6 @@
   margin-top: 20px;
   margin-right: 15px;
 }
-
-
 
 .close {
   background-color: transparent;
@@ -980,7 +967,7 @@
   margin-top: 10px;
 }
 .card-header-info {
-  color:#0e3370;
+  color: #0e3370;
   margin-left: 15px;
 }
 
@@ -1034,7 +1021,8 @@
   }
 }
 
-.comment-icon, .like-icon {
+.comment-icon,
+.like-icon {
   margin: 0 5px; /* Add some space between the icon and text */
 }
 
@@ -1068,19 +1056,68 @@
   background-color: #f8f9fa;
 }
 
-.custom-text{
+.custom-text {
   font-size: x-large;
   font-weight: 500;
 }
 
 .followers-text,
 .following-text {
-font-weight: 500;
+  font-weight: 500;
 }
 
 .followers-text:hover,
 .following-text:hover {
   font-weight: 700;
-    color: #efa92a; /* Change the color on hover as per your preference */
-    cursor: pointer;
+  color: #efa92a; /* Change the color on hover as per your preference */
+  cursor: pointer;
+}
+
+.truncate-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blinking-text {
+  animation: blink 2s infinite; /* Adjust the animation duration as needed */
+}
+
+.gray-container {
+  width: 100%;
+  height: 350px;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% {
+    background-color: rgba(
+      104,
+      104,
+      104,
+      0.7
+    ); /* Start with dark gray with some opacity */
+  }
+  100% {
+    background-color: rgba(
+      211,
+      211,
+      211,
+      0.7
+    ); /* End with lighter gray with same opacity */
+  }
 }
