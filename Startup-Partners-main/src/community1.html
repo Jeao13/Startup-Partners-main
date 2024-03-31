@@ -30,7 +30,7 @@
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
-
+    <script src="../frontend.js"></script>
     <title>ICONS Profile Page</title>
   </head>
 
@@ -106,28 +106,50 @@
     </style>
     <div class="main-frame overflow-y-scroll">
       <!-- Navigation bar -->
-      <header id="header" class="header d-flex align-items-center mb-4">
-        <i
-          class="bi bi-list d-block d-lg-none"
-          style="font-size: 24px; margin-right: 16px"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"
-        ></i>
-        <a href="index.html" class="logo d-flex align-items-center">
-          <img src="../img/logo2.png" alt="logo" style="height: 32px" />
-        </a>
+      <header
+        id="header"
+        class="header d-flex align-items-center justify-content-between mb-3"
+      >
+        <div class="d-flex">
+          <i
+            class="bi bi-list d-block d-md-none"
+            style="font-size: 24px; margin-right: 16px"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          ></i>
+          <a href="home.html" class="logo d-flex align-items-center">
+            <img src="../img/logo2.png" alt="logo" style="height: 32px" />
+          </a>
+        </div>
 
-        <nav class="header-nav ms-auto">
-          <ul class="d-flex align-items-center">
+        <nav class="header-nav">
+          <ul class="d-flex align-items-center gap-2">
             <li class="nav-item d-block d-lg-none"></li>
             <!-- End Search Icon-->
 
+            <div
+              class="border rounded-xs overflow-hidden d-flex align-items-center"
+              style="width: 250px"
+            >
+              <img src="../img/search.svg" height="16px" alt="" class="px-2" />
+              <input
+                type="text"
+                class="no-border py-1 text-sm"
+                placeholder="Search here"
+                style="height: 32px; outline: none"
+              />
+            </div>
+
             <li class="nav-item dropdown">
               <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                <i class="fa-solid fa-bell"></i>
-                <span class="badge bg-primary badge-number">4</span> </a
-              ><!-- End Notification Icon -->
+                <div
+                  class="p-2 d-flex align-items-center justify-content-center border rounded-xs"
+                >
+                  <img src="../img/notif.svg" height="16px" alt="" />
+                </div>
+              </a>
+              <!-- End Notification Icon -->
 
               <ul
                 class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
@@ -212,11 +234,10 @@
                 <img
                   src="../img/prof.png"
                   alt="Profile"
-                  class="rounded-circle"
-                />
-                <span class="d-none d-md-block dropdown-toggle ps-2"
-                  >Aedrian Jeao</span
-                > </a
+                  class="rounded-circle border"
+                  style="outline: 1px solid #0a3172"
+                  height="32px"
+                /> </a
               ><!-- End Profile Iamge Icon -->
 
               <ul
@@ -279,7 +300,10 @@
                   <hr class="dropdown-divider" />
                 </li>
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a
+                    class="dropdown-item d-flex align-items-center"
+                    onclick="logout()"
+                  >
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Log Out</span>
                   </a>
@@ -318,8 +342,6 @@
                 <p class="text-md">You have no posts.</p>
               </div>
 
-    
-
               <p class="text-sm font-semibold mb-2 mt-4">Recent Activity</p>
               <div class="p-3 border rounded-xs" style="border-style: dashed">
                 <p class="text-xs mb-0">
@@ -346,7 +368,7 @@
                 </div>
               </div>
 
-              <!-- ETO AYUSIN MO -->
+              
               <div class="border rounded-xs mt-2">
                 <div
                   class="p-4 border rounded-xs mb-3 position-relative overflow-hidden d-md-none"
@@ -643,7 +665,7 @@
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-lg" style="max-width: 1000px">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">
@@ -760,15 +782,18 @@
             <div class="modal-body">
               <div class="row justify-content-between">
                 <div
-                  class="col-9 bg-whitesmoke d-flex justify-content-center align-items-center p-5"
-                  style="height: 90vh"
+                  class="col-12 col-lg-9 bg-whitesmoke d-flex justify-content-center align-items-center p-5"
+                  style="height: 100vh;"
                 >
                   <div id="images">
                     <img src="../img/test.jpg" alt="" class="img-fluid w-100" />
                   </div>
                 </div>
 
-                <div class="col-3 bg-whitesmoke">
+                <div
+                  class="col-12 col-lg-3 d-flex flex-column justify-content-between bg-whitesmoke"
+                  style="height: 100vh; overflow: auto;"
+                >
                   <!-- User details -->
                   <div class="p-3">
                     <div
@@ -802,53 +827,49 @@
                         />
                       </div>
                     </div>
-                  </div>
 
-                  <!-- Main content -->
-                  <div id="contentainer">
-                    <p class="font-semibold px-3 m-0">Lorem.</p>
-                    <p class="text-xs px-3 mb-2">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Dolorem consectetur vel corporis id ullam aliquid,
-                      recusandae quia repellendus impedit quidem rem adipisci
-                      modi sequi fugit ea. Voluptatem asperiores magni esse.
-                    </p>
-                    <div class="btn-group mt-3 d-flex" style="width: 100%">
-                      <button
-                        class="btn bg-whitesmoke d-flex align-items-center justify-content-center"
-                      >
-                        <img
-                          src="../img/like.unselected.svg"
-                          style="width: 14px"
-                          alt=""
-                          class="me-1"
-                        />
-                        <p class="m-0 ml-2 text-sm">Like</p>
-                      </button>
-                      <button
-                        class="btn bg-whitesmoke d-flex align-items-center justify-content-center"
-                      >
-                        <img
-                          src="../img/dislike.unselected.svg"
-                          style="width: 14px"
-                          alt=""
-                          class="me-1"
-                        />
-                        <p class="m-0 ml-2 text-sm">Dislike</p>
-                      </button>
+                    <div id="contentainer" class="mt-3">
+                      <p class="font-semibold px-3 m-0">Lorem.</p>
+                      <p class="text-xs px-3 mb-2">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Dolorem consectetur vel corporis id ullam aliquid,
+                        recusandae quia repellendus impedit quidem rem adipisci
+                        modi sequi fugit ea. Voluptatem asperiores magni esse.
+                      </p>
+                      <div class="btn-group mt-3 d-flex" style="width: 100%">
+                        <button
+                          class="btn bg-whitesmoke d-flex align-items-center justify-content-center"
+                        >
+                          <img
+                            src="../img/like.unselected.svg"
+                            style="width: 14px"
+                            alt=""
+                            class="me-1"
+                          />
+                          <p class="m-0 ml-2 text-sm">Like</p>
+                        </button>
+                        <button
+                          class="btn bg-whitesmoke d-flex align-items-center justify-content-center"
+                        >
+                          <img
+                            src="../img/dislike.unselected.svg"
+                            style="width: 14px"
+                            alt=""
+                            class="me-1"
+                          />
+                          <p class="m-0 ml-2 text-sm">Dislike</p>
+                        </button>
+                      </div>
                     </div>
+
+                    <div
+                      class="d-flex flex-column p-3 mt-2"
+                      style="overflow-y: scroll; height: 500px"
+                      id="commentsContainer"
+                    ></div>
                   </div>
-
-                  <!-- Comments -->
                   <div
-                    class="d-flex flex-column p-3 mt-2"
-                    style="overflow-y: scroll; max-height: 60%"
-                    id="commentsContainer"
-                  ></div>
-
-                  <!-- Input section -->
-                  <div
-                    class="d-flex bg-whitesmoke p-3 justify-content-center align-items-center"
+                    class="d-flex bg-whitesmoke mt-3 mb-3 p-3 justify-content-center align-items-center"
                     id="inputs"
                   >
                     <div>
@@ -897,6 +918,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
       fetchPost();
+      // navBar();
       fetchAccPost(1);
     });
 

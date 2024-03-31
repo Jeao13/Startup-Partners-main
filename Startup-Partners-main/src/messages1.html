@@ -16,8 +16,13 @@
     />
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css"
+    />
     <title>Messages</title>
+    <script src="../frontend.js"></script>
+    <script src="../script.js"></script>
   </head>
 
   <body>
@@ -113,23 +118,25 @@
         color: #fff;
       }
     </style>
-    <div class="main-frame d-flex flex-column ">
+    <div class="main-frame d-flex flex-column">
       <!-- Navigation bar -->
       <header
-      id="header"
+        id="header"
         class="header d-flex align-items-center justify-content-between"
       >
-
-   
         <div class="d-flex">
-          <i class="bi bi-list d-block d-md-none" style="font-size: 24px; margin-right: 16px;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
-          <a href="index.html" class="logo d-flex align-items-center">
-          
+          <i
+            class="bi bi-list d-block d-md-none"
+            style="font-size: 24px; margin-right: 16px"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          ></i>
+          <a href="home.html" class="logo d-flex align-items-center">
             <img src="../img/logo2.png" alt="logo" style="height: 32px" />
           </a>
-  
         </div>
-      
+
         <nav class="header-nav">
           <ul class="d-flex align-items-center gap-2">
             <li class="nav-item d-block d-lg-none"></li>
@@ -653,10 +660,20 @@
       </div>
     </div>
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel"
+    >
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Chats</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="offcanvas-body">
         <div class="d-flex flex-column h-100">
@@ -920,8 +937,10 @@
         </div>
       </div>
     </div>
-
   </body>
-
-  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      navBar();
+    });
+  </script>
 </html>

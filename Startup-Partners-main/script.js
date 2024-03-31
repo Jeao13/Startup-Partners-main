@@ -1,11 +1,11 @@
 async function CreatePost() {
   const title = document.getElementById("title").value;
   console.log(title);
-  const author = "Aedrian Jeao";
+  const author = sessionStorage.getItem("name");
   const content = document.getElementById("body").value;
   const escapedContent = content.replace(/'/g, "''");
-  const account_fkid = 1;
-  const profile_fkid = 1;
+  const account_fkid = sessionStorage.getItem("user_id");
+  const profile_fkid = sessionStorage.getItem("profile_id");
   let imageData = null;
 
   // Get the file input element
@@ -99,9 +99,11 @@ async function fetchPost() {
     });
 
     let postContent = "";
+    console.log("Like Count:", postData.data[0]);
 
     for (const post of postData.data) {
       const timestamp = new Date(post.timestamp);
+
       const formattedTimestamp = timestamp.toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
@@ -167,7 +169,7 @@ async function fetchPost() {
               <p class="font-semibold px-3 m-0">
                 ${post.title}
               </p>
-              <p class="text-xs px-3 mb-2 ">
+              <p class="text-xs px-3 mb-2 text-truncate">
                 ${post.content}
               </p>
               <div id="wow" data-bs-toggle="modal" data-bs-target="#fullScreenModal">
@@ -299,6 +301,15 @@ async function postModal(id) {
     if (Array.isArray(postData.data) && postData.data.length > 0) {
       const firstPost = postData.data[0];
 
+      const date = new Date(firstPost.timestamp);
+      const formattedDate = date.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+
+      console.log(firstPost);
+
       const userVoteStatus = await checkUserVoteStatus(firstPost.post_id, 1); // Assuming userId is 1
 
       let likestatus, dislikestatus, likebg_color, dislikebg_color;
@@ -325,36 +336,43 @@ async function postModal(id) {
               <div class="d-flex gap-2">
                               <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle img-fluid" style="width: 38px" alt="Avatar" />
                               <div>
-                                  <p class="m-0 text-sm font-semibold">Aedrian Jeao De Torres</p>
-                                  <p class="m-0 text-xs">1 hour ago</p>
+                                  <p class="m-0 text-sm font-semibold">${firstPost.author}</p>
+                                  <p class="m-0 text-xs">${formattedDate}</p>
                               </div>
                           </div>
-                          <div class="d-flex gap-2">
+                          <div class="d-flex gap-2" data-bs-toggle="dropdown">
                               <img src="../img/more.svg" style="height: 16px" alt="" />
-                              <img src="../img/close.svg" style="height: 16px" alt="" />
-                          </div>`;
-
+                          </div>
+                          <ul class="dropdown-menu dropdown-menu-end">
+                <li class="dropdown-header text-start">
+                    <h6>Options</h6>
+                </li>
+  
+                <li><a class="dropdown-item" href="#">Hide</a></li>
+                <li><a class="dropdown-item" href="#">Report</a></li>
+            </ul>
+                          `;
       titleModalContainer.innerHTML = titleModalContent;
 
       const contentmodalContent = `
               <p class="font-semibold px-3 m-0">${firstPost.title}</p>
                   <p class="text-xs px-3 mb-2">${firstPost.content}</p>
-                  <p class="text-xs mt-1 m-0">${firstPost.like_count} likes</p>
+                  <p class="text-xs mt-1 m-0">${firstPost.like_count} upvotes</p>
                   <div class="btn-group mt-3 d-flex" style="width: 100%;">
                   
                       <button class="btn ${likebg_color} d-flex align-items-center justify-content-center" onclick="upVote(${firstPost.post_id})">
                       ${likestatus}
-                          <p class="m-0 ml-2 text-sm">Like</p>
+                          <p class="m-0 ml-2 text-sm">Upvote</p>
                       </button>
                       <button class="btn ${dislikebg_color} d-flex align-items-center justify-content-center" onclick="downVote(${firstPost.post_id})">
                       ${dislikestatus}
-                          <p class="m-0 ml-2 text-sm">Dislike</p>
+                          <p class="m-0 ml-2 text-sm">Downvote</p>
                       </button>
                   </div>`;
 
       contentModalContainer.innerHTML = contentmodalContent;
 
-      const imageModalContent = `<img src="${firstPost.image}" alt="" class="w-100" height="800px" style="object-fit: cover; object-position: center">`;
+      const imageModalContent = `<img src="${firstPost.image}" alt="" class="w-100" height="600px" style="object-fit: cover; object-position: center">`;
 
       imageModalContainer.innerHTML = imageModalContent;
 
@@ -396,7 +414,7 @@ async function postModal(id) {
           <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 40px; height: 40px;" alt="Avatar" />
           <div class="rounded p-2" style="background-color: gainsboro;">
               <p class="text-sm font-semibold p-0 m-0">${post.profile_name}</p>
-              <p class="text-xs p-0 m-0">${post.comment_content}</p>
+              <p class="text-xs p-0 m-0" style="overflow-wrap: break-word;">${post.comment_content}</p>
           </div>
       </div>`;
 
@@ -601,7 +619,8 @@ async function addComment(id) {
 
 // PROFILE
 
-async function fetchAccPost(id) {
+async function fetchAccPost() {
+  const id = sessionStorage.getItem("user_id");
   var postContainer = document.getElementById("posts1");
   console.log(postContainer);
   try {
@@ -664,12 +683,14 @@ async function fetchAccPost(id) {
 }
 
 // Profile fetching post
-async function fetchAccPostProfile(id) {
+async function fetchAccPostProfile() {
+  id = sessionStorage.getItem("user_id");
+  id1 = sessionStorage.getItem("profile_id");
   var postContainer = document.getElementById("posts");
   console.log(postContainer);
   try {
     const response = await fetch(
-      `http://localhost:3000/api/v1/community/post/account_fkid=${id}`,
+      `http://localhost:3000/api/v1/community/post/account_fkid=${id} OR profile_fkid=${id1}`,
       {
         method: "GET",
       }
@@ -729,7 +750,9 @@ async function fetchAccPostProfile(id) {
   }
 }
 
-async function fetchStartups(id) {
+async function fetchStartups() {
+  id = sessionStorage.getItem("profile_id");
+  console.log("ID:", id);
   var postContainer = document.getElementById("startups");
   console.log(postContainer);
   try {
@@ -758,7 +781,7 @@ async function fetchStartups(id) {
       });
 
       const currentPostContent = `
-      <div class="col-lg-4 col-6">
+      <div class="col-lg-4 col-12">
             <div class="border p-3 rounded-xs">
               <div class="d-flex justify-content-between">
               <p class="font-semibold m-0">${post.title}</p>
@@ -787,13 +810,14 @@ async function fetchStartups(id) {
 }
 
 async function deletePost(id) {
+  const id1 = sessionStorage.getItem("user_id");
   const confirmed = confirm("Are you sure you want to delete this post?");
 
   if (!confirmed) {
     return; // If the user cancels the confirmation, exit the function
   }
 
-  var condition = `id = ${id} AND account_fkid = 1`; // Ensure no spaces in the condition
+  var condition = `id = ${id} AND account_fkid = ${id1}`; // Ensure no spaces in the condition
   try {
     const response = await fetch(
       `http://localhost:3000/api/v1/community/post/${condition}`,
@@ -923,4 +947,215 @@ async function editPost(id) {
     console.error("Error updating post:", error);
     alert("Failed to update post. Please try again.");
   }
+}
+
+async function ViewUser() {
+  id = sessionStorage.getItem("user_id");
+  var nameInput = document.getElementById("name");
+  var bioInput = document.getElementById("bio");
+  var locationInput = document.getElementById("location-select");
+  var imageContainer = document.getElementById("imageContainer1");
+  var submitContainer = document.getElementById("submit1");
+
+  console.log(id);
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/v1/profile/${id}`, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user data");
+    }
+
+    const data = await response.json();
+
+    console.log(data);
+
+    nameInput.value = data.results[0].name;
+    bioInput.value = data.results[0].bio;
+    locationInput.value = data.results[0].location;
+
+    console.log(data.results[0].photo);
+
+    let imgsrc;
+
+    const newpic = sessionStorage.getItem("NewPic");
+    const newpic1 = sessionStorage.getItem("newAttach");
+
+    if (newpic) {
+      imgsrc = newpic;
+    } else if (newpic1) {
+      imgsrc = newpic1;
+    } else if (data.results[0].photo) {
+      sessionStorage.setItem("image64", data.results[0].photo);
+      imgsrc = data.results[0].photo;
+      console.log("wow");
+    } else {
+      imgsrc = "../img/user_default.jpg";
+      console.log("gumana");
+    }
+
+    sessionStorage.setItem("imgsrc", imgsrc);
+
+    var image = document.createElement("img");
+    image.classList.add("img-fluid", "rounded");
+    image.src = imgsrc;
+    image.style.maxWidth = "100%";
+    image.style.outline = "3px solid #0a3172";
+    image.style.outlineOffset = "2px";
+
+    // Clear previous content and append the new image
+
+    var button = document.createElement("button");
+    button.classList.add(
+      "btn",
+      "position-absolute",
+      "top-0",
+      "end-0",
+      "p-0",
+      "rounded",
+      "d-flex",
+      "justify-content-center",
+      "align-items-center"
+    );
+    button.style.width = "30px";
+    button.style.height = "30px";
+    button.type = "button";
+
+    button.setAttribute("data-bs-toggle", "dropdown");
+    button.setAttribute("aria-expanded", "false");
+
+    var i = document.createElement("i");
+    i.classList.add("bi", "bi-three-dots");
+
+    button.appendChild(i);
+
+    var ul = document.createElement("ul");
+
+    ul.classList.add("dropdown-menu");
+
+    const ulContent = ` <li><a class="dropdown-item" onclick="openPictureModal()">Take a Picture</a></li>
+    <li><a class="dropdown-item" onclick="openImageInput()">Attach an Image</a></li>
+    <li><a class="dropdown-item" onclick="removePic()">Remove Profile Picture</a></li>`;
+
+    ul.innerHTML = ulContent;
+
+    imageContainer.innerHTML = "";
+    imageContainer.appendChild(button);
+    imageContainer.appendChild(ul);
+    imageContainer.appendChild(image);
+
+    // Center the image vertically and horizontally
+    imageContainer.classList.add(
+      "d-flex",
+      "align-items-center",
+      "justify-content-center"
+    );
+
+    submitContent = `<button type="button" class="btn btn-primary" onclick="saveEditProfile(${id})">Edit</button>`;
+
+    submitContainer.innerHTML = submitContent;
+  } catch (error) {
+    console.error("Error editing startup:", error);
+    // Handle the error here (e.g., show an error message to the user)
+  }
+}
+
+async function openCamera() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const videoElement = document.getElementById("videoElement");
+    videoElement.srcObject = stream;
+  } catch (error) {
+    console.error("Error accessing camera:", error);
+  }
+}
+
+function closeCamera() {
+  let videoElement = document.getElementById("videoElement");
+
+  // Check if the video element and its srcObject are valid
+  if (videoElement && videoElement.srcObject) {
+    let stream = videoElement.srcObject;
+    let tracks = stream.getTracks();
+
+    tracks.forEach(function (track) {
+      track.stop();
+    });
+
+    videoElement.srcObject = null;
+  }
+
+  // Clear the src attribute of the image element
+  let capturedImage = document.getElementById("capturedImage");
+  if (capturedImage) {
+    capturedImage.src = "";
+  }
+
+  // Hide the camera container
+  let cameraContainer = document.getElementById("cameraContainer");
+  if (cameraContainer) {
+    cameraContainer.style.display = "none";
+  }
+}
+
+function takePicture() {
+  var video = document.getElementById("videoElement");
+  var canvas = document.createElement("canvas");
+  var context = canvas.getContext("2d");
+
+  // Set the canvas dimensions to match the video
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  // Draw the video frame onto the canvas
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Get the captured image data as a data URL
+  var imageDataURL = canvas.toDataURL("image/jpeg");
+
+  // Display the captured image
+  var capturedImage = document.getElementById("capturedImage");
+  capturedImage.src = imageDataURL;
+  sessionStorage.setItem("NewPic", imageDataURL);
+  capturedImage.style.display = "block";
+}
+
+function openPictureModal() {
+  const myModal = new bootstrap.Modal(document.getElementById("PicModal"));
+  myModal.show();
+
+  openCamera();
+}
+
+function clearImg() {
+  sessionStorage.removeItem("NewPic");
+  sessionStorage.removeItem("newAttach");
+}
+
+function openImageInput() {
+  // Create a file input element
+  var input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/*"; // Accept all types of image files
+
+  // Add an event listener to handle when a file is selected
+  input.addEventListener("change", function (event) {
+    var file = event.target.files[0];
+    if (file) {
+      // Read the selected file as a data URL
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var base64String = event.target.result;
+        console.log("64:", base64String);
+        sessionStorage.setItem("newAttach", base64String);
+        ViewUser(1);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Click the file input element to trigger the file selection dialog
+  input.click();
 }
