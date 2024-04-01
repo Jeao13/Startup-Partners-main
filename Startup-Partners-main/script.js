@@ -75,6 +75,7 @@ function bufferToImageURL(buffer) {
 async function fetchPost() {
   var postContainer = document.getElementById("posts");
   var userid = sessionStorage.getItem("user_id");
+  var name = sessionStorage.getItem("name");
 
   try {
     const response = await fetch(
@@ -126,6 +127,28 @@ async function fetchPost() {
         dislikestatus = `<img src="../img/dislike.unselected.svg" alt="" />`;
       }
 
+      let options;
+
+      if (name === post.author) {
+        options = `<ul class="dropdown-menu dropdown-menu-end">
+        <li class="dropdown-header text-start">
+            <h6>Options</h6>
+        </li>
+
+        <li><a class="dropdown-item" href="#">Edit Post</a></li>
+        <li><a class="dropdown-item" href="#" onclick="deletePost(${post.post_id})">Delete Post</a></li>
+    </ul>`;
+      } else {
+        options = `<ul class="dropdown-menu dropdown-menu-end">
+        <li class="dropdown-header text-start">
+            <h6>Options</h6>
+        </li>
+
+        <li><a class="dropdown-item" href="#">Hide</a></li>
+        <li><a class="dropdown-item" href="#">Report</a></li>
+    </ul>`;
+      }
+
       const currentPostContent = `
             <div class="border rounded-xs mt-4 mb-2">
             <!-- heading -->
@@ -153,15 +176,8 @@ async function fetchPost() {
                   <a><img src="../img/more.svg" style="height: 16px" alt="" /></a>
     
                 </div>
-
-                <ul class="dropdown-menu dropdown-menu-end">
-                <li class="dropdown-header text-start">
-                    <h6>Options</h6>
-                </li>
-  
-                <li><a class="dropdown-item" href="#">Hide</a></li>
-                <li><a class="dropdown-item" href="#">Report</a></li>
-            </ul>
+                ${options}
+                
               </div>
             </div>
 
