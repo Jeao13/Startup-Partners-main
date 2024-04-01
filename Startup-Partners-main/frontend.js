@@ -245,7 +245,7 @@ async function navBar() {
         <li>
           <a
             class="dropdown-item d-flex align-items-center"
-            href="profile1.html"
+            href="profile.html"
           >
             <i class="fa-regular fa-user"></i>
             <span>My Profile</span>
@@ -258,7 +258,7 @@ async function navBar() {
         <li>
           <a
             class="dropdown-item d-flex align-items-center"
-            href="community1.html"
+            href="community.html"
           >
             <i class="fa-solid fa-users-rectangle"></i>
             <span>Community</span>
@@ -271,7 +271,7 @@ async function navBar() {
         <li>
           <a
             class="dropdown-item d-flex align-items-center"
-            href="messages1.html"
+            href="messages.html"
           >
             <i class="fa-regular fa-message"></i>
             <span>Messages</span>
