@@ -12593,3 +12593,8 @@ input[type="file"] {
   outline: 3px solid #0a3172;
   outline-offset: 2px;
 }
+
+.see-more {
+  color: blue;
+  cursor: pointer;
+}

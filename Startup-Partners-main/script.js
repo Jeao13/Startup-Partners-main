@@ -74,6 +74,7 @@ function bufferToImageURL(buffer) {
 
 async function fetchPost() {
   var postContainer = document.getElementById("posts");
+  var userid = sessionStorage.getItem("user_id");
 
   try {
     const response = await fetch(
@@ -110,7 +111,7 @@ async function fetchPost() {
         year: "numeric",
       });
 
-      const userVoteStatus = await checkUserVoteStatus(post.post_id, 1); // Assuming userId is 1
+      const userVoteStatus = await checkUserVoteStatus(post.post_id, userid); // Assuming userId is 1
 
       let likestatus, dislikestatus;
 
@@ -206,10 +207,12 @@ async function fetchPost() {
                   ${dislikestatus}
                   </div>
                 </div>
+                
                 <input
                   type="text"
                   placeholder="Write your comment here"
                   class="w-100 text-xs px-2 border rounded-xs"
+                  onclick="postModal(${post.post_id}); openModalAndScrollToCommentInput(${post.post_id},'commentInput')"
                 />
 
                 <div
@@ -277,6 +280,7 @@ async function checkUserVoteStatus(postId, userId) {
 }
 
 async function postModal(id) {
+  var userid = sessionStorage.getItem("user_id");
   try {
     var titleModalContainer = document.getElementById("titlemodal");
     var imageModalContainer = document.getElementById("images");
@@ -310,7 +314,10 @@ async function postModal(id) {
 
       console.log(firstPost);
 
-      const userVoteStatus = await checkUserVoteStatus(firstPost.post_id, 1); // Assuming userId is 1
+      const userVoteStatus = await checkUserVoteStatus(
+        firstPost.post_id,
+        userid
+      ); // Assuming userId is 1
 
       let likestatus, dislikestatus, likebg_color, dislikebg_color;
 
@@ -356,7 +363,11 @@ async function postModal(id) {
 
       const contentmodalContent = `
               <p class="font-semibold px-3 m-0">${firstPost.title}</p>
-                  <p class="text-xs px-3 mb-2">${firstPost.content}</p>
+              <p class="text-xs px-3 mb-2 text-truncate" id="postContent">
+                  ${firstPost.content}
+                  
+              </p>
+              <span id="see-more" onclick="toggleTextExpansion()" class="text-xs clickable">See more</span>
                   <p class="text-xs mt-1 m-0">${firstPost.like_count} upvotes</p>
                   <div class="btn-group mt-3 d-flex" style="width: 100%;">
                   
@@ -428,13 +439,16 @@ async function postModal(id) {
 }
 
 async function upVote(id) {
+  const user_id = sessionStorage.getItem("user_id");
+  const profile_id = sessionStorage.getItem("profile_id");
+
   try {
-    const existingEngagement = await checkUserVoteStatus(id, 1); // Assuming userId is 1
+    const existingEngagement = await checkUserVoteStatus(id, user_id); // Assuming userId is 1
 
     if (existingEngagement === "upvote") {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/v1/community/engage/${id}/1`,
+          `http://localhost:3000/api/v1/community/engage/${id}/${user_id}`,
           {
             method: "DELETE",
           }
@@ -455,7 +469,7 @@ async function upVote(id) {
         is_disliked: 0,
       };
       const response = await fetch(
-        `http://localhost:3000/api/v1/community/engage/${id}/1`,
+        `http://localhost:3000/api/v1/community/engage/${id}/${user_id}`,
         {
           method: "PATCH",
           headers: {
@@ -475,8 +489,8 @@ async function upVote(id) {
         is_liked: 1,
         is_disliked: 0,
         community_post_fkid: id,
-        account_fkid: 1,
-        profile_fkid: 1,
+        account_fkid: user_id,
+        profile_fkid: profile_id,
       };
 
       // Fetch post data
@@ -505,16 +519,19 @@ async function upVote(id) {
 }
 
 async function downVote(id) {
+  const user_id = sessionStorage.getItem("user_id");
+  const profile_id = sessionStorage.getItem("profile_id");
   console.log("Downvote button clicked");
   console.log(id);
+  console.log(user_id);
 
   try {
-    const existingEngagement = await checkUserVoteStatus(id, 1); // Assuming userId is 1
+    const existingEngagement = await checkUserVoteStatus(id, user_id); // Assuming userId is 1
 
     if (existingEngagement === "downvote") {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/v1/community/engage/${id}/1`,
+          `http://localhost:3000/api/v1/community/engage/${id}/${user_id}`,
           {
             method: "DELETE",
           }
@@ -535,7 +552,7 @@ async function downVote(id) {
         is_disliked: 1,
       };
       const response = await fetch(
-        `http://localhost:3000/api/v1/community/engage/${id}/1`,
+        `http://localhost:3000/api/v1/community/engage/${id}/${user_id}`,
         {
           method: "PATCH",
           headers: {
@@ -555,8 +572,8 @@ async function downVote(id) {
         is_liked: 0,
         is_disliked: 1,
         community_post_fkid: id,
-        account_fkid: 1,
-        profile_fkid: 1,
+        account_fkid: user_id,
+        profile_fkid: profile_id,
       };
 
       // Fetch post data
@@ -583,14 +600,16 @@ async function downVote(id) {
 }
 
 async function addComment(id) {
+  const user_id = sessionStorage.getItem("user_id");
+  const profile_id = sessionStorage.getItem("profile_id");
   console.log("lol");
   try {
     const commentText = document.getElementById("commentInput").value; // Assuming you have an input field with id "commentInput"
     const postData = {
       comment: commentText,
       community_post_fkid: id,
-      account_fkid: 1,
-      profile_fkid: 1,
+      account_fkid: user_id,
+      profile_fkid: profile_id,
     };
 
     const response = await fetch(

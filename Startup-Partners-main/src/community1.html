@@ -368,7 +368,6 @@
                 </div>
               </div>
 
-              
               <div class="border rounded-xs mt-2">
                 <div
                   class="p-4 border rounded-xs mb-3 position-relative overflow-hidden d-md-none"
@@ -783,7 +782,7 @@
               <div class="row justify-content-between">
                 <div
                   class="col-12 col-lg-9 bg-whitesmoke d-flex justify-content-center align-items-center p-5"
-                  style="height: 100vh;"
+                  style="height: 100vh"
                 >
                   <div id="images">
                     <img src="../img/test.jpg" alt="" class="img-fluid w-100" />
@@ -792,7 +791,7 @@
 
                 <div
                   class="col-12 col-lg-3 d-flex flex-column justify-content-between bg-whitesmoke"
-                  style="height: 100vh; overflow: auto;"
+                  style="height: 100vh; overflow: auto"
                 >
                   <!-- User details -->
                   <div class="p-3">
@@ -904,6 +903,24 @@
   </body>
 
   <script>
+    function openModalAndScrollToCommentInput(postId, commentInputId) {
+      // Open the modal
+      const myModal = new bootstrap.Modal(
+        document.getElementById("fullScreenModal")
+      );
+      myModal.show();
+
+      // Scroll to the comment input after a delay
+      setTimeout(() => {
+        const commentInput = document.getElementById(commentInputId);
+        console.log(commentInput);
+        if (commentInput) {
+          commentInput.scrollIntoView({ behavior: "smooth", block: "center" });
+          commentInput.focus();
+        }
+      }, 500); // Adjust the delay time (in milliseconds) as needed
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get("postId");
 

@@ -224,9 +224,10 @@ async function navBar() {
         <img
           src="${image}"
           alt="Profile"
-          class="rounded-circle border"
+          class="rounded-circle border flex-grow-0"
           style="outline: 1px solid #0a3172"
-          height="32px"
+          height="40px"
+          width="40px"
         /> </a
       ><!-- End Profile Iamge Icon -->
 
@@ -1416,4 +1417,15 @@ function generateRoomId(length) {
   return roomId;
 }
 
+function toggleTextExpansion() {
+  const postContent = document.getElementById("postContent");
+  const seeMoreSpan = document.getElementById("see-more");
+  if (postContent.classList.contains("text-truncate")) {
+    postContent.classList.remove("text-truncate");
+    seeMoreSpan.textContent = "See less";
+  } else {
+    postContent.classList.add("text-truncate");
+    seeMoreSpan.textContent = "See more";
+  }
+}
 //Community
